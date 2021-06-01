@@ -3,18 +3,16 @@
 # create a new runner image from ubuntu:20.04
 # with the previous runner's artifacts
 
-FROM valhalla/valhalla:run-latest as builder
-MAINTAINER Nils Nolde <nils@gis-ops.com>
+FROM valhalla/valhalla:run-3.1.2 as builder
 
 # remove some stuff from the original image
 RUN cd /usr/local/bin && \
-  preserve="valhalla_service valhalla_build_tiles valhalla_build_config valhalla_build_admins valhalla_build_timezones valhalla_build_elevation valhalla_ways_to_edges" && \
+  preserve="valhalla_service valhalla_export_edges valhalla_build_tiles valhalla_build_config valhalla_build_admins valhalla_build_timezones valhalla_build_elevation valhalla_ways_to_edges" && \
   mv $preserve .. && \
   for f in valhalla*; do rm $f; done && \
   cd .. && mv $preserve ./bin
 
 FROM ubuntu:20.04 as runner
-MAINTAINER Nils Nolde <nils@gis-ops.com>
 
 RUN apt-get update > /dev/null && \
     export DEBIAN_FRONTEND=noninteractive && \

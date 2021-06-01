@@ -1,4 +1,4 @@
-[![ci tests](https://github.com/gis-ops/docker-valhalla/actions/workflows/tests.yml/badge.svg)](https://github.com/gis-ops/docker-valhalla/actions/workflows/tests.yml)
+[![ci tests](https://github.com/strikehawk/docker-valhalla/actions/workflows/tests.yml/badge.svg)](https://github.com/strikehawk/docker-valhalla/actions/workflows/tests.yml)
 
 # Valhalla Docker image by GIS • OPS
 
@@ -101,3 +101,14 @@ sudo ./tests/test.sh
 ## Acknowledgements
 
 This project was first introduced by [MichaelsJP](https://github.com/MichaelsJP).
+
+# Fork of the GIS-OPS image
+The `gisops/valhalla` Docker image is a fantastic starting point but does not give enough control on what happens when starting the container.  
+The new image simply adds a new script to configure Valhalla and generate the tiles without starting the server itself, and ensures that the tools required for preparing data for [Pelias](https://pelias.io/) are present.  
+
+**NOTE:** This image is based on the [3.1.2](https://github.com/valhalla/valhalla/releases/tag/3.1.2) version of Valhalla.
+
+## Generating routing tiles
+https://github.com/gis-ops/docker-valhalla#container-recipes
+
+To only prepare the data without starting the server, use the following script: `/valhalla/scripts/generate_only.sh` instead of the default entry point.
