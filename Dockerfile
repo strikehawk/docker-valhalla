@@ -30,6 +30,7 @@ COPY --from=builder /usr/lib/x86_64-linux-gnu/libprime* /usr/lib/x86_64-linux-gn
 ENV LD_LIBRARY_PATH="/usr/local/lib:${LD_LIBRARY_PATH}"
 
 COPY scripts/runtime/. /valhalla/scripts
+RUN chmod +x /valhalla/scripts/run.sh && chmod +x /valhalla/scripts/configure_valhalla.sh && chmod +x /valhalla/scripts/generate_only.sh
 
 # Expose the necessary port
 EXPOSE 8002
